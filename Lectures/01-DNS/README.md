@@ -41,10 +41,10 @@ Let’s dissect the domain name `www.kubernetes.io.`
 
 | Part         | Description                                                                             |
 | ------------ | --------------------------------------------------------------------------------------- |
-| `.`          | **Root domain** — The starting point of DNS hierarchy                                   |
+| `.`          | **Root** — The starting point of the DNS hierarchy                                      |
 | `io`         | **TLD (Top-Level Domain)** — Represents a domain category (e.g., `.com`, `.edu`, `.io`) |
-| `kubernetes` | **Domain Name** — Registered under the `.io` TLD                                        |
-| `www`        | **Subdomain** — Used to organize or separate services                                   |
+| `kubernetes` | **Second-Level Domain** — Registered under the `.io` TLD                                |
+| `www`        | **Subdomain** — A prefix to the main domain (used for services like web, mail, etc.)    |
 
 * **Root (`.`)**: The apex of the DNS hierarchy. Every fully qualified domain name (FQDN) ends with an implicit or explicit dot, indicating the root.
 * **TLD (`io`)**: The top-level domain specifies the category. For instance, `.com` is for commercial use, `.edu` for education, `.io` is commonly used by tech companies.
