@@ -1,5 +1,10 @@
 # DNS Explained: What It Is and How It Works
 
+## Video reference for this lecture:
+
+[![Watch the video](https://img.youtube.com/vi/hXFciOpUuOY/maxresdefault.jpg)](https://www.youtube.com/watch?v=hXFciOpUuOY&ab_channel=CloudWithVarJosh)
+
+
 ---
 ## ⭐ Support the Project  
 If this **repository** helps you, give it a ⭐ to show your support and help others discover it! 
@@ -127,17 +132,22 @@ Your system first checks its **local DNS cache**.
 If the record isn’t found, it forwards the query to the configured **DNS resolver**—typically your ISP’s resolver or a public one like **Google (`8.8.8.8`)** or **Cloudflare (`1.1.1.1`)**.
 
 
+---
+
 #### **2. Recursive Resolution** *(Green)*
 
-The DNS resolver begins a **recursive lookup** through the DNS hierarchy:
+Before performing a full recursive lookup, the **DNS resolver checks its own cache** to see if it has a recent answer for `docs.kubernetes.io`. If a valid cached response exists, it returns that immediately and skips the rest of the resolution steps.
 
-1. It asks a **Root DNS server** (represented as `.`) where to find information about the **`.io`** TLD.
+If the answer isn’t cached, the resolver begins a **recursive lookup** through the DNS hierarchy:
+
+1. It queries a **Root DNS server** (represented as `.`) to locate the nameservers responsible for the **`.io`** TLD.
 2. The Root server replies with a referral to the **`.io` nameservers**.
 3. The `.io` nameservers respond with a referral to the **authoritative nameservers** for `kubernetes.io`.
 4. The authoritative nameservers for `kubernetes.io` return the **IP address** (A or AAAA record) for `docs.kubernetes.io`.
 
 > **Note**: A **nameserver** is a DNS server that holds DNS records for a domain. It either gives a referral to another server or directly returns the correct IP. We'll explore more about nameservers shortly.
 
+---
 
 #### **3. Response & Caching** *(Green)*
 
@@ -150,6 +160,15 @@ It then sends the resolved IP back to your system.
 Your browser uses the IP to initiate a **TCP (or TLS)** connection to the Kubernetes docs server and loads the website.
 
 > ⚡ DNS resolvers often cache popular domains like `kubernetes.io` to improve performance and reduce repeated lookups through the root and TLD servers.
+
+---
+
+### DNS TTL Behavior and IP Change Strategy
+
+DNS caching is governed by the **TTL (Time to Live)** value specified in a DNS record at the time of lookup. When a resolver (such as your ISP or a public DNS like `8.8.8.8`) receives a response with a TTL of 600 seconds, it will cache that domain-to-IP mapping for **up to 10 minutes**, starting from when the response was received. During this window, even if the origin DNS server updates the IP address, the resolver will continue serving the **stale IP** until the TTL expires. This can lead to **temporary inaccessibility or misrouting** if clients rely on outdated records.
+
+🛠️ **Best practice before an IP change**: Lower the TTL (e.g., to 60 or 120 seconds) **several hours in advance**. This ensures that future lookups receive the shorter TTL, allowing resolvers to refresh the record more quickly once the change is made.  
+⚠️ Keep in mind: TTL changes are **not retroactive**, resolvers that cached the record earlier will retain the original TTL until it expires.
 
 ---
 
@@ -241,9 +260,11 @@ This modular structure allows large domains to be delegated, distributed, and ma
 * Once at the **authoritative nameservers** (e.g., `ns1.digitalocean.com`), the query hits the domain's **zone file**, which stores the actual resource records — like **A**, **CNAME**, **MX**, etc. Example records from `kubernetes.io`'s zone:
 
   ```dns
-  www.kubernetes.io.     A     104.17.175.85
-  mail.kubernetes.io.    MX    10 mailserver.example.net.
-  docs.kubernetes.io.    CNAME kubernetes.io.
+  kubernetes.io.         A     3.33.186.135
+  www.kubernetes.io.     CNAME kubernetes.io.
+  docs.kubernetes.io.    A     52.219.165.51
+  blog.kubernetes.io.    A     99.84.214.102
+  discuss.kubernetes.io. A     13.226.217.45
   ```
 
 * Large domains (e.g., `google.com`) may be split into **multiple zones** for delegation, load management, or team separation. This is done via **NS records for subdomains** inside the parent zone:
