@@ -232,7 +232,7 @@ This modular structure allows large domains to be delegated, distributed, and ma
 
 ### How DNS Zones and Zone Files Work
 
-![Alt text](Lectures/images/1b.png)
+![Alt text](/Lectures/images/1b.png)
 
 * DNS resolution starts at the **root zone**, the entry point of the DNS hierarchy, managed by **IANA**. The root zone file contains **NS records for all Top-Level Domains (TLDs)** such as `.com`, `.org`, and `.io`, telling resolvers where to go next. Example:
 
@@ -533,7 +533,7 @@ These TLD nameservers don't store the **actual DNS records (like A or MX)**. Ins
 
 This section explains the behind-the-scenes process of registering a new domain — in this case, **`cwvj.io`**, as done by Varun. The diagram outlines how control flows from the domain owner to the global DNS hierarchy, involving the **registrar**, **registry**, and **root servers**.
 
-![Alt text](Lectures/images/1c.png)
+![Alt text](/Lectures/images/1c.png)
 
 ---
 
@@ -618,7 +618,7 @@ This **multi-layered delegation** is what makes DNS scalable and globally distri
 
 ### *(Shwetangi opens `https://cwvj.io` in her browser)*
 
-![Alt text](Lectures/images/1d.png)
+![Alt text](/Lectures/images/1d.png)
 
 #### Step 1: User Initiates Request  
 **Action:** Shwetangi attempts to access `cwvj.io` using a browser or application.  
