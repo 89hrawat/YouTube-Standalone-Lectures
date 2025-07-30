@@ -47,7 +47,7 @@ Each subdirectory inside the `Lectures/` folder corresponds to a standalone lect
 ## Stay Connected!
 
 * Follow me on **[LinkedIn: Varun Joshi](https://www.linkedin.com/in/varun-joshi-2b516752/)**
-* Subscribe to my **[YouTube Channel: Cloud With VarJosh](https://www.youtube.com/@CloudWithVarJosh04)**
+* Subscribe to my **[YouTube Channel: Cloud With VarJosh](https://www.youtube.com/@CloudWithVarJosh)**
 * Explore this repository on **[GitHub](https://github.com/CloudWithVarJosh/YouTube-Standalone-Lectures)**
 
 ---
