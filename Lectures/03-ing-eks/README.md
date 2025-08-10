@@ -2,6 +2,8 @@
 
 ## Video reference for this is the following:
 
+[![Watch the video](https://img.youtube.com/vi/ngyegIE_5FM/maxresdefault.jpg)](https://www.youtube.com/watch?v=ngyegIE_5FM&ab_channel=CloudWithVarJosh)
+
 ---
 ## ⭐ Support the Project  
 If this **repository** helps you, give it a ⭐ to show your support and help others discover it! 
