@@ -1362,7 +1362,7 @@ eksctl delete cluster --name cwvj-ingress-demo
 
 In this demo, we will extend our TLS-secured Ingress setup from Demo 2 and implement **host-based (name-based) routing**. This allows requests to different subdomains (e.g., `iphone.cwvj.click`, `android.cwvj.click`, `cwvj.click`) to be routed to separate services inside the Kubernetes cluster. This is a common pattern in production-grade ingress configurations where applications are hosted under different subdomains.
 
-![Alt text](/images/51b.png)
+![Alt text](/Lectures/images/51b.png)
 
 ---
 
