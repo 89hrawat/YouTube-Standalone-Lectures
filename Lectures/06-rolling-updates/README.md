@@ -1,7 +1,8 @@
-# Kubernetes Rolling Updates & Rollbacks (Hands-On)
+# How to Do Kubernetes Rolling Updates & Rollbacks (Hands-On)
 
 ## Video reference for the lecture is the following:
 
+[![Watch the video](https://img.youtube.com/vi/DsHHcA0kAAM/maxresdefault.jpg)](https://www.youtube.com/watch?v=DsHHcA0kAAM&ab_channel=CloudWithVarJosh)
 
 ---
 ## ⭐ Support the Project  
@@ -340,6 +341,7 @@ kubectl get deploy nginx-deploy -o jsonpath='{.spec.template.spec.containers[0].
 ```
 
 You should see `nginx:1.26`.
+
 
 ---
 
